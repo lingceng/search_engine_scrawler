@@ -1,5 +1,7 @@
-require "search_engine_scrawler/version"
+# encoding: utf-8
 
-module SearchEngineScrawler
-  # Your code goes here...
-end
+require "search_engine_scrawler/version"
+require 'socket'
+
+require 'search_engine_scrawler/scrawler'
+require 'search_engine_scrawler/baidu_scrawler'
