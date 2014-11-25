@@ -6,8 +6,8 @@ desc 'fetch sites with scrawler'
 task :fetch  do
   puts "Start fetch"
 
-  scrawler = SearchEngineScrawler::BaiduScrawler.new('www.baidu.com', 'ruby')
-  scrawler.do_fetch
+  scrawler = SearchEngineScrawler::BaiduScrawler.new
+  scrawler.do_fetch('ruby')
 
   puts "End fetch"
 end
