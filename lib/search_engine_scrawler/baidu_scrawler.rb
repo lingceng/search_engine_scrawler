@@ -14,7 +14,7 @@ module SearchEngineScrawler
       "GET /s?wd=#{keyword} HTTP/1.0\r\n\r\n"
     end
 
-    def parse(body)
+    def parse_keywords(body)
       return if body.nil?
 
       # OPTIMIZE: better regex
@@ -26,7 +26,7 @@ module SearchEngineScrawler
             puts keyword, @keywords.size
             @keywords << keyword
             if @keywords.size <= @keyword_max
-              do_fetch keyword
+              fetch keyword
             end
           end
         end

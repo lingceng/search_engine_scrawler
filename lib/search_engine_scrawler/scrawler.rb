@@ -6,14 +6,14 @@ module SearchEngineScrawler
       @host = host
     end
 
-    def do_fetch(keyword)
+    def fetch(keyword)
       socket = TCPSocket.open(@host, 80)
       socket.set_encoding 'UTF-8'
 
       socket.print wrap_request(keyword)
       response = socket.read
       _headers,body = response.split("\r\n\r\n", 2)
-      parse(body)
+      parse_keywords(body)
 
       socket.close
     end
@@ -22,8 +22,8 @@ module SearchEngineScrawler
       "GET /index.html HTTP/1.0\r\n\r\n"
     end
 
-    def parse(body)
-      puts body
+    def parse_keywords(body)
+      raise 'Not implement'
     end
 
   end

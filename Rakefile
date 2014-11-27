@@ -7,7 +7,7 @@ task :fetch  do
   puts "Start fetch"
 
   scrawler = SearchEngineScrawler::BaiduScrawler.new
-  scrawler.do_fetch('ruby')
+  scrawler.fetch('ruby')
 
   puts "End fetch"
 end
