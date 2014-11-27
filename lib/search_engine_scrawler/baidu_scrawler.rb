@@ -19,7 +19,7 @@ module SearchEngineScrawler
         return [] unless body
         body.scan(%r{<div id="rs"><div class="tt">相关搜索</div>.*}) do |match|
           return [] unless match
-          related_keywords = match.scan(%r{<th><a href="[^"]+">([^>]+)</a></th>})
+          related_keywords = match.scan(%r{<th><a href="[^"]+">([^<]+)</a></th>})
         end
       end
 

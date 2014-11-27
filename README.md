@@ -18,6 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
+    $ rake fetch[keyword]
 
 ## Contributing
 

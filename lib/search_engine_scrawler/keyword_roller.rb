@@ -20,7 +20,7 @@ module SearchEngineScrawler
       current = Array(keyword)
       @all.push(*current)
 
-      return @all unless @all.size < @max
+      return @all unless @all.size < @max && !current.empty?
 
       puts "Generation #{@generation += 1} start ======="
       puts current
