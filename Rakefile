@@ -10,10 +10,12 @@ task :fetch  do
   roller = SearchEngineScrawler::KeywordRoller.new(scrawler)
   keywords = roller.roll('ruby')
 
-  keywords.each do |keyword|
-    puts "Sites for [#{keyword}] ====== "
-    puts scrawler.fetch_sites(keyword)
+  sites = SearchEngineScrawler::ConcurrentHelper.together(keywords) do |keyword|
+    puts "Feching sites for [#{keyword}]"
+    scrawler.fetch_sites(keyword)
   end
+
+  puts sites
 
   puts "End fetch"
 end

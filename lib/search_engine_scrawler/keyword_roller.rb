@@ -1,6 +1,9 @@
+require 'search_engine_scrawler/concurent_helper.rb'
+
 module SearchEngineScrawler
 
   class KeywordRoller
+
     def initialize(scrawler, max: 20)
       @scrawler = scrawler
 
@@ -12,6 +15,7 @@ module SearchEngineScrawler
       @generation = 0
     end
 
+
     def roll(keyword)
       current = Array(keyword)
       @all.push(*current)
@@ -21,7 +25,7 @@ module SearchEngineScrawler
       puts "Generation #{@generation += 1} start ======="
       puts current
 
-      current_related = current.collect do |c|
+      current_related = ConcurrentHelper.together(current) do |c|
         @scrawler.fetch_related_keywords(c)
       end
 

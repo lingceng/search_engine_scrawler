@@ -1,11 +1,10 @@
-require 'search_engine_scrawler/scrawler_helper'
+require 'search_engine_scrawler/socket_helper'
 
 module SearchEngineScrawler
 
   class BaiduScrawler
-    include ScrawlerHelper
 
-    def initialize()
+    def initialize
       @host = 'www.baidu.com'
     end
 
@@ -16,7 +15,7 @@ module SearchEngineScrawler
     def fetch_related_keywords(keyword)
       related_keywords = []
 
-      fetch( @host, wrap_request(keyword) ) do |body|
+      SocketHelper.fetch( @host, wrap_request(keyword) ) do |body|
         return [] unless body
         body.scan(%r{<div id="rs"><div class="tt">相关搜索</div>.*}) do |match|
           return [] unless match
@@ -30,7 +29,7 @@ module SearchEngineScrawler
     def fetch_sites(keyword)
       sites = []
 
-      fetch( @host, wrap_request(keyword) ) do |body|
+      SocketHelper.fetch( @host, wrap_request(keyword) ) do |body|
         return [] unless body
         body.scan(%r{<div id="content_left">.*}m) do |match|
           return [] unless match

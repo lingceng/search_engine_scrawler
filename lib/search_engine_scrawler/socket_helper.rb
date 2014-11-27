@@ -1,6 +1,7 @@
 module SearchEngineScrawler
 
-  module ScrawlerHelper
+  module SocketHelper
+    module_function
 
     def fetch(host, request)
       TCPSocket.open(host, 80) do |socket|
