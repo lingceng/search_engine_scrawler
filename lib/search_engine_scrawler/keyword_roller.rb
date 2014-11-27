@@ -13,10 +13,10 @@ module SearchEngineScrawler
     end
 
     def roll(keyword)
-      return @all unless @all.size <= @max
-
       current = Array(keyword)
       @all.push(*current)
+
+      return @all unless @all.size < @max
 
       puts "Generation #{@generation += 1} start ======="
       puts current

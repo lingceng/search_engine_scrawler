@@ -27,6 +27,23 @@ module SearchEngineScrawler
       related_keywords
     end
 
+    def fetch_sites(keyword)
+      sites = []
+
+      fetch( @host, wrap_request(keyword) ) do |body|
+        return [] unless body
+        body.scan(%r{<div id="content_left">.*}m) do |match|
+          return [] unless match
+
+          match.scan(%r{<div class="result.*?</div>}m) do |item|
+            sites << item.scan(%r{<h3.*?>\s*?<a.*?href\s*=\s*"([^"]+)"[^>]*>(.*?)</a>}m)
+          end
+        end
+      end
+
+      sites
+    end
+
   end
 
 end

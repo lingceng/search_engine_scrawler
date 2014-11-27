@@ -8,8 +8,12 @@ task :fetch  do
 
   scrawler = SearchEngineScrawler::BaiduScrawler.new
   roller = SearchEngineScrawler::KeywordRoller.new(scrawler)
-  puts roller.roll('ruby')
+  keywords = roller.roll('ruby')
 
+  keywords.each do |keyword|
+    puts "Sites for [#{keyword}] ====== "
+    puts scrawler.fetch_sites(keyword)
+  end
 
   puts "End fetch"
 end
