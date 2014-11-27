@@ -7,7 +7,9 @@ task :fetch  do
   puts "Start fetch"
 
   scrawler = SearchEngineScrawler::BaiduScrawler.new
-  scrawler.fetch('ruby')
+  roller = SearchEngineScrawler::KeywordRoller.new(scrawler)
+  puts roller.roll('ruby')
+
 
   puts "End fetch"
 end
