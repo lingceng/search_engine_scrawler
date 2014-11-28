@@ -14,6 +14,7 @@ task :fetch, :keyword, :max  do |t, args|
   scrawler = SearchEngineScrawler::BaiduScrawler.new
   roller = SearchEngineScrawler::KeywordRoller.new(scrawler, max: args[:max].to_i)
   keywords = roller.roll(args[:keyword])
+  SearchEngineScrawler::DBHelper.save_keywords(keywords)
 
   sites = SearchEngineScrawler::ConcurrentHelper.together(keywords) do |keyword|
     puts "Feching sites for [#{keyword}]"
@@ -21,6 +22,9 @@ task :fetch, :keyword, :max  do |t, args|
   end
 
   puts sites
+  SearchEngineScrawler::DBHelper.save_sites(sites)
 
   puts "End fetch"
 end
+
+

@@ -7,7 +7,7 @@ module SearchEngineScrawler
       items.each_slice(max).collect do |slice|
         slice.collect { |c| Thread.new { action.call(c) } }
           .collect { |thread| thread.value  }
-      end.flatten
+      end.flatten(2)
     end
 
   end

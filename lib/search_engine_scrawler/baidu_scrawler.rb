@@ -35,7 +35,7 @@ module SearchEngineScrawler
           return [] unless match
 
           match.scan(%r{<div class="result.*?</div>}m) do |item|
-            sites << item.scan(%r{<h3.*?>\s*?<a.*?href\s*=\s*"([^"]+)"[^>]*>(.*?)</a>}m)
+            sites.concat item.scan(%r{<h3.*?>\s*?<a.*?href\s*=\s*"([^"]+)"[^>]*>(.*?)</a>}m)
           end
         end
       end
