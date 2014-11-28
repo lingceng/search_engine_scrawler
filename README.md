@@ -18,7 +18,11 @@ Or install it yourself as:
 
 ## Usage
 
-    $ rake fetch[keyword]
+    $ rake fetch[keyword,max]
+
+eg. search 'ruby' keyword and set the max to 20
+
+    $ rake fetch[ruby,20]
 
 ## Contributing
 

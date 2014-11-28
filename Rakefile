@@ -3,7 +3,7 @@ require "search_engine_scrawler"
 
 
 desc 'fetch sites with scrawler'
-task :fetch, :keyword  do |t, args|
+task :fetch, :keyword, :max  do |t, args|
   unless args[:keyword]
     puts "rake fetch[keyword]"
     next
@@ -12,7 +12,7 @@ task :fetch, :keyword  do |t, args|
   puts "Start fetch"
 
   scrawler = SearchEngineScrawler::BaiduScrawler.new
-  roller = SearchEngineScrawler::KeywordRoller.new(scrawler)
+  roller = SearchEngineScrawler::KeywordRoller.new(scrawler, max: args[:max].to_i)
   keywords = roller.roll(args[:keyword])
 
   sites = SearchEngineScrawler::ConcurrentHelper.together(keywords) do |keyword|
