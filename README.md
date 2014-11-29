@@ -2,6 +2,9 @@
 
 Collect info through a search engine.
 
+First search related keywords for your given keyword, then collect all site for
+every related keywords.
+
 ## Installation
 
 ```ruby
@@ -20,7 +23,7 @@ Or install it yourself as:
 
     $ rake fetch[keyword,max]
 
-eg. search 'ruby' keyword and set the max to 20
+eg. search 'ruby' keyword and set the max related keywords to 20
 
     $ rake fetch[ruby,20]
 
